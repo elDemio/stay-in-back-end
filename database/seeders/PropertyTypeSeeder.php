@@ -17,7 +17,7 @@ class PropertyTypeSeeder extends Seeder
     {
         DB::table('property_types')->insert([
             [
-                'title' => 'Apartamentos',
+                'title' => 'Apartamento',
                 'description' => 'Un apartamento o un piso es el hogar ideal lejos de casa para los viajeros que quieren tener su propio espacio al final del día.',
                 'icon_image' => 'tmp1',
                 'status' => '1',
@@ -33,8 +33,8 @@ class PropertyTypeSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'Alojamiento unico',
-                'description' => 'estructuras originales o poco convencionales, como casas del árbol, yurtas o granjas.',
+                'title' => 'Alojamiento único',
+                'description' => 'Estructuras originales o poco convencionales, como casas del árbol, yurtas o granjas.',
                 'icon_image' => 'tmp3',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AmenitySeeder extends Seeder
+class PaymentMethodSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,25 +15,22 @@ class AmenitySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('amenities')->insert([
+        DB::table('payment_methods')->insert([
             [
-                'title' => 'Aire acondicionado',
-                'icon_image' => 'ac.svg',
-                'status' => '1',
+                'name' => 'Tarjeta',
+                'payment_icon' => 'credit.svg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'Televisión',
-                'icon_image' => 'tv.svg',
-                'status' => '1',
+                'name' => 'Bitcoin',
+                'payment_icon' => 'bitcoin.svg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'Wi-fi',
-                'icon_image' => 'wifi.svg',
-                'status' => '1',
+                'name' => 'Transferencia',
+                'payment_icon' => 'wallet.svg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],

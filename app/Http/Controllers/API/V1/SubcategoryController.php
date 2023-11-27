@@ -21,9 +21,9 @@ class SubcategoryController extends Controller
     {
         $Subcategory = Subcategory::create($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $Subcategory, //retorna toda la data
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $Subcategory,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
@@ -36,9 +36,9 @@ class SubcategoryController extends Controller
     {
         $SubcategoryId->update($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $SubcategoryId, //retorna toda la data
-            'msg' => 'Actualizado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $SubcategoryId,
+            'msg' => 'Actualizado correctamente'
         ],200);
     }
 
@@ -49,10 +49,9 @@ class SubcategoryController extends Controller
         $Subcategory->delete();
 
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $Subcategory, //retorna toda la data
+            'res' => true,
+            'data' => $Subcategory,
             'message' => 'Eliminado correctamente'
         ],200);
-        //204 No Content
     }
 }

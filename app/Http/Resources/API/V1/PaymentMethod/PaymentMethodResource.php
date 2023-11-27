@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\API\V1\Category;
+namespace App\Http\Resources\API\V1\PaymentMethod;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class PaymentMethodResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,8 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'icon_image' => $this->icon_image,
-            'status' => $this->status,
-            'created_at' => $this->created_at->format('d/m/Y'),
+            'name' => $this->name,
+            'payment_icon' => $this->payment_icon,
         ];
     }
 }

@@ -33,20 +33,14 @@ class PropertyTypeController extends Controller
         $propertytype->save();
 
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $propertytype, //retorna toda la data en $propertyType
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $propertytype,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
     public function show(PropertyType $PropertyTypeId)
     {
-        //return $propertyType;
-        /*return response()->json([
-            'res' => true,
-            'property Type' => $id
-        ],200);*/
-        //return PropertyType::find($id);
         return response()->json(new PropertyTypeResource($PropertyTypeId),200);
     }
 
@@ -69,7 +63,6 @@ class PropertyTypeController extends Controller
         $PropertyType->update([
             'title' =>$request->title,
             "description"=>$request->description,
-            //$request->all(),
             "icon_image"=>$PropertyType->icon_image
         ]);
         
@@ -92,6 +85,5 @@ class PropertyTypeController extends Controller
         return response()->json([
             'message' => 'Eliminado correctamente'
         ],200);
-        //204 No Content
     }
 }

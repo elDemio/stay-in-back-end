@@ -27,7 +27,7 @@ class StateSeeder extends Seeder
             ],
             [
                 'country_id' => Country::all()->random()->id,
-                'name' => 'Usulutan',
+                'name' => 'Usulután',
                 'code' => 'USU',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -35,7 +35,7 @@ class StateSeeder extends Seeder
             ],
             [
                 'country_id' => Country::all()->random()->id,
-                'name' => 'Morazan',
+                'name' => 'Morazán',
                 'code' => 'MOR',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),

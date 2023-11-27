@@ -18,23 +18,21 @@ class BookingController extends Controller
 
     public function bookinguser()
     {
-        return new BookingCollection(Booking::all()->where('user_id', auth()->user()->id)); //sin paginar
-        //return new PropertyCollection(Property::where('user_id', auth()->user()->id)->paginate(20)); //paginar
+        return new BookingCollection(Booking::all()->where('user_id', auth()->user()->id));
     }
 
     public function bookingusers()
     {
-        return new BookingCollection(Booking::all()->where('user_id', auth()->user()->id)); //sin paginar
-        //return new PropertyCollection(Property::where('user_id', auth()->user()->id)->paginate(20)); //paginar
+        return new BookingCollection(Booking::all()->where('user_id', auth()->user()->id));
     }
 
     public function store(StoreBookingRequest $request)
     {
         $Booking = Booking::create($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $Booking, //retorna toda la data
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $Booking,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
@@ -48,8 +46,46 @@ class BookingController extends Controller
         //
     }
 
+    public function bookingsByProperty($propertyId)
+    {
+        $bookings = Booking::where('property_id', $propertyId)->get();
+        return new BookingCollection($bookings);
+    }
+
+    public function bookingsDatesByProperty($propertyId)
+    {
+        $bookings = Booking::where('property_id', $propertyId)->get(['dateini', 'datefini']);
+        
+        $dates = $bookings->map(function ($booking) {
+            return [
+                'dateini' => $booking->dateini,
+                'datefini' => $booking->datefini,
+            ];
+        });
+
+        return response()->json($dates, 200);
+    }
+
+    public function markBookingAsCompleted($bookingId)
+    {
+        $booking = Booking::find($bookingId);
+
+        if (!$booking) {
+            return response()->json(['message' => 'Reserva no encontrada'], 404);
+        }
+
+        $user = auth()->user();
+        if ($booking->property->user_id !== $user->id) {
+            return response()->json(['message' => 'No tienes permiso para modificar esta reserva'], 403);
+        }
+
+        $booking->update(['status' => 0]);
+
+        return response()->json(['message' => 'Reserva marcada como completada'], 200);
+    }
+
     public function destroy($id)
     {
-        //
+
     }
 }

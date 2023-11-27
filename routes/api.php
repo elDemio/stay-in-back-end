@@ -1,43 +1,40 @@
 <?php
 
-use App\Http\Controllers\API\V1\AmenityController as AmenityV1; //Controlador Version 1, Amenity
+use App\Http\Controllers\API\V1\AmenityController as AmenityV1;
 use App\Http\Controllers\API\V1\AuthenticationController;
-use App\Http\Controllers\API\V1\BookingController as BookingV1; //Controlador Reservaciones
-use App\Http\Controllers\API\V1\CategoryController as CategoryV1; //Controlador Version 1, Category
-use App\Http\Controllers\API\V1\CityController as CityV1; //Controlador Version 1, City
-use App\Http\Controllers\API\V1\CountryController as CountryV1; //Controlador Version 1, Country
-use App\Http\Controllers\API\V1\PropertyController as PropertyV1; //Controlador Version 1, Property
-use App\Http\Controllers\API\V1\PropertyTypeController as PropertyTypeV1; //Controlador Version 1, PropertyType
-use App\Http\Controllers\API\V1\RoomTypeController as RoomTypeV1; //Controlador Version 1, RoomType
-use App\Http\Controllers\API\V1\StateController as StateV1; //Controlador Version 1, State
-use App\Http\Controllers\API\V1\SubcategoryController as SubcategoryV1; //Controlador Version 1, Subcategory
-use App\Http\Controllers\API\V2\PropertyTypeController as PropertyTypeV2; //Controlador Version 2, PropertyType
+use App\Http\Controllers\API\V1\BookingController as BookingV1;
+use App\Http\Controllers\API\V1\CategoryController as CategoryV1;
+use App\Http\Controllers\API\V1\CityController as CityV1;
+use App\Http\Controllers\API\V1\CountryController as CountryV1;
+use App\Http\Controllers\API\V1\PaymentMethodController as PaymentMethodV1;
+use App\Http\Controllers\API\V1\PropertyController as PropertyV1;
+use App\Http\Controllers\API\V1\PropertyTypeController as PropertyTypeV1;
+use App\Http\Controllers\API\V1\RoomTypeController as RoomTypeV1;
+use App\Http\Controllers\API\V1\StateController as StateV1;
+use App\Http\Controllers\API\V1\SubcategoryController as SubcategoryV1;
+use App\Http\Controllers\API\V2\PropertyTypeController as PropertyTypeV2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
-
 Route::group(['prefix'=>'v1'],
 function(){
+
     //Register Version 1
     Route::post('register', [AuthenticationController::class,'register']);
+
     //Login Version 1
     Route::post('login', [AuthenticationController::class,'login']);
+
     //Home
     Route::get('home', [PropertyV1::class,'index']);
     Route::get('home/{PropertyId}', [PropertyV1::class,'show']);
+    Route::get('categories', [CategoryV1::class,'index']);
 });
 
-//Route::group(['prefix'=>'v1'],
 Route::group(['prefix'=>'v1','middleware'=> ['auth:sanctum']],
 function(){
-    //
-    Route::get('homeusers', [PropertyV1::class,'propertyuser']);
-    Route::get('search/properties/{field}/{query}', [PropertyV1::class,'search']);
-    //cerrar sesion
-    Route::post('cerrarsesion',[AuthenticationController::class,'cerrarSesion']);
+    //Cerrar sesion
+    Route::get('cerrarsesion',[AuthenticationController::class,'cerrarSesion']);
 
     //Property Type Version 1
     Route::get('propertiestypes', [PropertyTypeV1::class,'index']);
@@ -46,8 +43,6 @@ function(){
     Route::put('propertiestypes/{PropertyTypeId}', [PropertyTypeV1::class,'update']);
     Route::delete('propertiestypes/{PropertyTypeId}', [PropertyTypeV1::class,'destroy']);
 
-    //Route::apiResource('v1/propertiestypes', App\Http\Controllers\API\V1\PropertyTypeController::class);
-
     //Country Version 1
     Route::get('countries', [CountryV1::class,'index']);
     Route::post('countries', [CountryV1::class,'store']);
@@ -55,6 +50,14 @@ function(){
     Route::put('countries/{CountryId}', [CountryV1::class,'update']);
     Route::patch('countries/{CountryId}', [CountryV1::class,'update']);
     Route::delete('countries/{CountryId}', [CountryV1::class,'destroy']);
+
+    //Payment Method
+    Route::get('paymentmethods', [PaymentMethodV1::class,'index']);
+    Route::post('paymentmethods', [PaymentMethodV1::class,'store']);
+    Route::get('paymentmethods/{PaymentMethodId}', [PaymentMethodV1::class,'show']);
+    Route::put('paymentmethods/{PaymentMethodId}', [PaymentMethodV1::class,'update']);
+    Route::patch('paymentmethods/{PaymentMethodId}', [PaymentMethodV1::class,'update']);
+    Route::delete('paymentmethods/{PaymentMethodId}', [PaymentMethodV1::class,'destroy']);
 
     //Room Type Version 1
     Route::get('roomstypes', [RoomTypeV1::class,'index']);
@@ -80,7 +83,6 @@ function(){
     Route::delete('cities/{CityId}', [CityV1::class,'destroy']);
 
     //Category Version 1
-    Route::get('categories', [CategoryV1::class,'index']);
     Route::post('categories', [CategoryV1::class,'store']);
     Route::get('categories/{CategoryId}', [CategoryV1::class,'show']);
     Route::put('categories/{CategoryId}', [CategoryV1::class,'update']);
@@ -101,6 +103,8 @@ function(){
     Route::delete('amenities/{AmenityId}', [AmenityV1::class,'destroy']);
 
     //Property Version 1
+    Route::get('homeusers', [PropertyV1::class,'propertyuser']);
+    Route::get('search/properties/{field}/{query}', [PropertyV1::class,'search']);
     Route::get('properties', [PropertyV1::class,'index']);
     Route::post('properties', [PropertyV1::class,'store']);
     Route::post('propertiesrole/{PropertyId}', [PropertyV1::class,'updaterole']);
@@ -111,7 +115,10 @@ function(){
     //Booking Version 1
     Route::get('bookings', [BookingV1::class,'index']);
     Route::get('bookingsuser', [BookingV1::class,'bookinguser']);
+    Route::get('/bookings/property/{propertyId}', [BookingV1::class,'bookingsByProperty']);
+    Route::get('/bookings/property/{propertyId}/dates',[BookingV1::class,'bookingsDatesByProperty']);
     Route::post('bookings', [BookingV1::class,'store']);
+    Route::put('bookings/{bookingId}/complete', [BookingV1::class,'markBookingAsCompleted']);
     Route::post('bookings/{BookingId}', [BookingV1::class,'updaterole']);
     Route::get('bookings/{BookingId}', [BookingV1::class,'show']); 
     Route::put('bookings/{BookingId}', [BookingV1::class,'update']);

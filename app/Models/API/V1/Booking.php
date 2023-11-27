@@ -22,21 +22,17 @@ class Booking extends Model
         'service_fee',
         'price_total',
         'status',
+        'payment_method_id'
     ];
 
-    //datos no enviar
     protected $hidden = [
-        //'id',
         'created_at',
         'updated_at'
     ];
 
-    //relacion a users inversa
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
-
-    //relacion a users inversa
 
     public function property(){
         return $this->belongsTo(Property::class);
@@ -47,5 +43,10 @@ class Booking extends Model
         static::creating(function ($property) {
             $property->user_id = Auth::id();
         });
+    }
+
+    public function PaymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 }

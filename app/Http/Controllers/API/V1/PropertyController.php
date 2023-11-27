@@ -24,6 +24,7 @@ class PropertyController extends Controller
     public function propertyuser()
     {
         return new PropertyCollection(Property::all()->where('user_id', auth()->user()->id)); //sin paginar
+        
         //return new PropertyCollection(Property::where('user_id', auth()->user()->id)->paginate(20)); //paginar
     }
 
@@ -41,7 +42,7 @@ class PropertyController extends Controller
             $image = $request->file('cover');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/Cover', $file);
+            $image->storeAs('public/cover', $file);
             $Property->cover = $file;
         }
 
@@ -53,7 +54,7 @@ class PropertyController extends Controller
                 $imageName=time().'_'.$path->getClientOriginalName();
                 $request['property_id']=$Property->id;
                 $request['property_image']=$imageName;
-                $path->move(\public_path("storage/Property_images"),$imageName);
+                $path->move(\public_path("storage/property_images"),$imageName);
                 PropertyImage::create($request->all());
 
             }
@@ -116,16 +117,19 @@ class PropertyController extends Controller
         $this->authorize('update', $Property);
 
         if ($request->hasFile('cover')){
-            if (File::exists("storage/Cover/".$Property->cover)) {
-                File::delete("storage/Cover/".$Property->cover);
+            if (File::exists("storage/cover/".$Property->cover)) {
+                File::delete("storage/cover/".$Property->cover);
             }
             $image = $request->file('cover');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/Cover', $file);
+            $image->storeAs('public/cover', $file);
             $Property->cover = $file;
 
             $request['cover'] = $Property->cover;
+
+        }elseif (!$request->has('cover')) {
+            
         }
 
         $Property->update([
@@ -151,28 +155,44 @@ class PropertyController extends Controller
             'cover'=>$Property->cover
         ]);
 
-        PropertyImage::where('property_id', $PropertyId)->delete();
-        // $imagesd=PropertyImage::where("property_id",$Property->id)->get();
-        //     foreach($imagesd as $imaged){
-        //         if (File::exists("public/Property_images/".$imaged->property_image)) {
-        //             File::delete("public/Property_images/".$imaged->property_image);
+        // PropertyImage::where('property_id', $PropertyId)->delete();
+        // // $imagesd=PropertyImage::where("property_id",$Property->id)->get();
+        // //     foreach($imagesd as $imaged){
+        // //         if (File::exists("public/Property_images/".$imaged->property_image)) {
+        // //             File::delete("public/Property_images/".$imaged->property_image);
+        // //         }
+        // //     }
+
+        //     if($request->hasFile("property_images")){
+        //         $path=$request->file("property_images");
+        //         foreach($path as $path){
+        //             $imageName=time().'_'.$path->getClientOriginalName();
+        //             $request['property_id']=$Property->id;
+        //             $request['property_image']=$imageName;
+        //             $path->move(\public_path("storage/property_images"),$imageName);
+        //             PropertyImage::create($request->all());
+    
         //         }
         //     }
+ // Verificar si hay nuevas imágenes en la solicitud
+ if ($request->hasFile('property_images')) {
+    $newImages = $request->file('property_images');
 
-            if($request->hasFile("property_images")){
-                $path=$request->file("property_images");
-                foreach($path as $path){
-                    $imageName=time().'_'.$path->getClientOriginalName();
-                    $request['property_id']=$Property->id;
-                    $request['property_image']=$imageName;
-                    $path->move(\public_path("storage/Property_images"),$imageName);
-                    PropertyImage::create($request->all());
-    
-                }
-            }
+    // Eliminar imágenes existentes solo si se proporcionan nuevas imágenes
+    PropertyImage::where('property_id', $PropertyId)->delete();
+
+    // Guardar las nuevas imágenes
+    foreach ($newImages as $image) {
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->storeAs('public/property_images', $imageName);
+        PropertyImage::create([
+            'property_id' => $PropertyId,
+            'property_image' => $imageName
+        ]);
+    }
+}
 
 
-        
         return (new PropertyResource($Property))
         ->additional(['msg' => 'Actualizado correctamente'])
         ->response()
@@ -184,8 +204,8 @@ class PropertyController extends Controller
         $Property = Property::findOrFail($PropertyId);
         $this->authorize('delete', $Property);
 
-        if (File::exists("storage/Cover/".$Property->cover)) {
-            File::delete("storage/Cover/".$Property->cover);
+        if (File::exists("storage/cover/".$Property->cover)) {
+            File::delete("storage/cover/".$Property->cover);
         }
 
         $Property->delete();

@@ -87,7 +87,7 @@ php artisan storage:link
 
 `Installation of the routes`
 ```bash
-the paths in the aironb.postman_collection.json file will be updated very soon.
+the paths in the stay_in.postman_collection.json file will be updated very soon.
 ```
 
 ## Code of Conduct

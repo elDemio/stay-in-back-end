@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\API\V1\RoomType;
+namespace App\Http\Resources\API\V1\PaymentMethod;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class RoomTypeCollection extends ResourceCollection
+class PaymentMethodCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -22,7 +22,7 @@ class RoomTypeCollection extends ResourceCollection
                     'Ángel Rivera'
                 ]
             ],
-            'type' => 'Rooms Types'
+            'type' => 'PaymentMethod'
         ];
     }
 }

@@ -17,9 +17,9 @@ class PropertyTypeCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             'meta' => [
-                'Organization' => 'Aironb',
+                'Organization' => 'stay_in',
                 'authors' => [
-                    'Jonh Rdz'
+                    'Ángel Rivera'
                 ]
             ],
             'type' => 'Properties Types'

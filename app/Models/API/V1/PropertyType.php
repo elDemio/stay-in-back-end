@@ -17,18 +17,7 @@ class PropertyType extends Model
     ];
 
     protected $hidden = [
-        //'id',
         'created_at',
         'updated_at'
     ];
-
-    // public function getPublishedAtAttribute()
-    // {
-    //     return $this->created_at->format('d/m/Y');
-    // }
-
-    /*public function user()
-    {
-        return $this->belongsTo(User::class);
-    }*/
 }

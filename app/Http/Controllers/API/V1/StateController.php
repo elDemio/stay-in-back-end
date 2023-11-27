@@ -21,9 +21,9 @@ class StateController extends Controller
     {
         $state = State::create($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $state, //retorna toda la data
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $state,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
@@ -36,9 +36,9 @@ class StateController extends Controller
     {
         $StateId->update($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $StateId, //retorna toda la data
-            'msg' => 'Actualizado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $StateId,
+            'msg' => 'Actualizado correctamente'
         ],200);
     }
 
@@ -49,10 +49,9 @@ class StateController extends Controller
         $State->delete();
 
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $State, //retorna toda la data
+            'res' => true,
+            'data' => $State,
             'message' => 'Eliminado correctamente'
         ],200);
-        //204 No Content
     }
 }

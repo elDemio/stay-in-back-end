@@ -21,9 +21,9 @@ class CountryController extends Controller
     {
         $country = Country::create($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $country, //retorna toda la data
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $country,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
@@ -36,9 +36,9 @@ class CountryController extends Controller
     {
         $CountryId->update($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $CountryId, //retorna toda la data
-            'msg' => 'Actualizado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $CountryId,
+            'msg' => 'Actualizado correctamente'
         ],201);
     }
 
@@ -49,10 +49,9 @@ class CountryController extends Controller
         $country->delete();
 
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $country, //retorna toda la data
+            'res' => true,
+            'data' => $country,
             'message' => 'Eliminado correctamente'
         ],200);
-        //204 No Content
     }
 }

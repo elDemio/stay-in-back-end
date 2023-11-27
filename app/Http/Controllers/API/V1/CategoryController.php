@@ -26,7 +26,7 @@ class CategoryController extends Controller
             $image = $request->file('icon_image');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/Category', $file);
+            $image->storeAs('public/category', $file);
             $Category->icon_image = $file;
         }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
             $image = $request->file('icon_image');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/Category', $file);
+            $image->storeAs('public/category', $file);
             $Category->icon_image = $file;
 
             $request['icon_image'] = $Category->icon_image;
@@ -77,8 +77,8 @@ class CategoryController extends Controller
     {
         $Category = Category::findOrFail($CategoryId);
         
-        if (File::exists("storage/Category/".$Category->icon_image)) {
-            File::delete("storage/Category/".$Category->icon_image);
+        if (File::exists("storage/category/".$Category->icon_image)) {
+            File::delete("storage/category/".$Category->icon_image);
         }
 
         $Category->delete();

@@ -17,10 +17,6 @@ class CityResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'created_at' => $this->created_at->format('d/m/Y'),
-            /*'author' => [
-                'name' => $this->user->name,
-                'email' => $this->user->email,
-            ],*/
         ];
     }
 }

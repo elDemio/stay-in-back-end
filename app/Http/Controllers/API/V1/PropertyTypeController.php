@@ -44,7 +44,7 @@ class PropertyTypeController extends Controller
         if($request->hasFile("icon_image")){
             $file=$request->file("icon_image");
             $imageName=time().'_'.$file->getClientOriginalName();
-            $file->move(\public_path("/public/property_type/"),$imageName);
+            $file->move(\public_path("/public/property-type/"),$imageName);
 
             //$propertyType = new PropertyType($request->all());
             $propertyType =new PropertyType([

@@ -26,16 +26,16 @@ class RoomTypeController extends Controller
             $image = $request->file('icon_image');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/RoomType', $file);
+            $image->storeAs('public/room-type', $file);
             $RoomType->icon_image = $file;
         }
 
         $RoomType->save();
 
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $RoomType, //retorna toda la data
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $RoomType,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
@@ -48,13 +48,13 @@ class RoomTypeController extends Controller
     {
         $RoomType=RoomType::findOrFail($RoomTypeId);
         if ($request->hasFile('icon_image')){
-            if (File::exists("storage/RoomType/".$RoomType->icon_image)) {
-                File::delete("storage/RoomType/".$RoomType->icon_image);
+            if (File::exists("storage/room-type/".$RoomType->icon_image)) {
+                File::delete("storage/room-type/".$RoomType->icon_image);
             }
             $image = $request->file('icon_image');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/RoomType', $file);
+            $image->storeAs('public/room-type', $file);
             $RoomType->icon_image = $file;
 
             $request['icon_image'] = $RoomType->icon_image;
@@ -63,7 +63,6 @@ class RoomTypeController extends Controller
         $RoomType->update([
             'title' =>$request->title,
             "description"=>$request->description,
-            //$request->all(),
             "icon_image"=>$RoomType->icon_image
         ]);
         
@@ -77,17 +76,16 @@ class RoomTypeController extends Controller
     {
         $RoomType = RoomType::findOrFail($RoomTypeId);
         
-        if (File::exists("storage/RoomType/".$RoomType->icon_image)) {
-            File::delete("storage/RoomType/".$RoomType->icon_image);
+        if (File::exists("storage/room-type/".$RoomType->icon_image)) {
+            File::delete("storage/room-type/".$RoomType->icon_image);
         }
 
         $RoomType->delete();
         
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $RoomType, //retorna toda la data
+            'res' => true,
+            'data' => $RoomType,
             'message' => 'Eliminado correctamente'
         ],200);
-        //204 No Content
     }
 }

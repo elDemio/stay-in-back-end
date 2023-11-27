@@ -24,8 +24,8 @@ class StorePropertyTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'description' => 'required|max:255',
+            'title' => 'max:255',
+            'description' => 'max:255',
             'icon_image' => 'required',
             'status',
         ];

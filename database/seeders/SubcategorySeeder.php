@@ -18,8 +18,8 @@ class SubcategorySeeder extends Seeder
         DB::table('subcategories')->insert([
             [
                 'category_id' => 1,
-                'title' => 'Apartamento con servicios incluidos',
-                'description' => 'Apartamento con las comodidades habituales de un hotel, atendido por una empresa de administración profesional.',
+                'title' => 'Departamento',
+                'description' => 'Alojamiento con las comodidades habituales de un hotel, atendido por una empresa de administración profesional.',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

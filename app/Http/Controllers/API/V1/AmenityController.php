@@ -26,7 +26,7 @@ class AmenityController extends Controller
             $image = $request->file('icon_image');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/Amenity', $file);
+            $image->storeAs('public/amenities', $file);
             $Amenity->icon_image = $file;
         }
 
@@ -48,13 +48,13 @@ class AmenityController extends Controller
     {
         $Amenity = Amenity::findOrFail($AmenityId);
         if ($request->hasFile('icon_image')){
-            if (File::exists("storage/Amenity/".$Amenity->icon_image)) {
-                File::delete("storage/Amenity/".$Amenity->icon_image);
+            if (File::exists("storage/amenities/".$Amenity->icon_image)) {
+                File::delete("storage/amenities/".$Amenity->icon_image);
             }
             $image = $request->file('icon_image');
             $ext = $image->extension();
             $file = time().'.'.$ext;
-            $image->storeAs('public/Amenity', $file);
+            $image->storeAs('public/amenities', $file);
             $Amenity->icon_image = $file;
 
             $request['icon_image'] = $Amenity->icon_image;
@@ -74,8 +74,8 @@ class AmenityController extends Controller
     {
         $Amenity = Amenity::findOrFail($AmenityId);
         
-        if (File::exists("storage/Amenity/".$Amenity->icon_image)) {
-            File::delete("storage/Amenity/".$Amenity->icon_image);
+        if (File::exists("storage/amenities/".$Amenity->icon_image)) {
+            File::delete("storage/amenities/".$Amenity->icon_image);
         }
 
         $Amenity->delete();

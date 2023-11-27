@@ -14,10 +14,6 @@ class AmenityResource extends JsonResource
             'icon_image' => $this->icon_image,
             'status' => $this->status,
             'created_at' => $this->created_at->format('d/m/Y'),
-            /*'author' => [
-                'name' => $this->user->name,
-                'email' => $this->user->email,
-            ],*/
         ];
     }
 }

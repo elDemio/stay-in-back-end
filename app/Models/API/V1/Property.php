@@ -37,9 +37,7 @@ class Property extends Model
         'status',
     ];
 
-    //datos no enviar
     protected $hidden = [
-        //'id',
         'created_at',
         'updated_at'
     ];
@@ -49,46 +47,38 @@ class Property extends Model
         return $this->created_at->format('d/m/Y');
     }
 
-    //relacion a users inversa
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
 
-    //relacion a property_types inversa
     public function property_type(){
         return $this->belongsTo(PropertyType::class);
     }
 
-    //relacion a room_types inversa
     public function room_type(){
         return $this->belongsTo(RoomType::class);
     }
 
-    //relacion a categories inversa
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    //relacion a subcategories inversa
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class);
     }
 
-    //relacion a countries inversa
     public function country()
     {
         return $this->belongsTo(Country::class);
     }
 
-    //relacion a states inversa
     public function state()
     {
         return $this->belongsTo(State::class);
     }
 
-    //relacion a cities inversa
     public function city()
     {
         return $this->belongsTo(City::class);

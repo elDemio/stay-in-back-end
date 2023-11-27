@@ -58,7 +58,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //relacion a property
     public function property(){
         return $this->hasMany('App\Models\API\V1\Property');
     }

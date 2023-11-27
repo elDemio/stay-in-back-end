@@ -18,24 +18,24 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'title' => 'Apartamentos',
-                'description' => 'Un apartamento o un piso es el hogar ideal lejos de casa para los viajeros que quieren tener su propio espacio al final del día.',
-                'icon_image' => 'tmp1',
+                'description' => 'Hogar ideal lejos de casa para los viajeros que quieren tener su propio espacio al final del día.',
+                'icon_image' => 'apartment.svg',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'Casa',
-                'description' => 'Una casa es un edificio para habitar. El término suele utilizarse para nombrar a la construcción de una o pocas plantas que está destinada a la vivienda de una única familia.',
-                'icon_image' => 'tmp2',
+                'title' => 'Casas',
+                'description' => 'Edificio de una o pocas plantas que está destinada a la vivienda de una única familia, ideal para aquellos que gustan de un espacio cerrado para disfrutar con buena compañía.',
+                'icon_image' => 'house.svg',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'Alojamiento unico',
-                'description' => 'estructuras originales o poco convencionales, como casas del árbol, yurtas o granjas.',
-                'icon_image' => 'tmp3',
+                'title' => 'Alojamientos únicos',
+                'description' => 'Estructuras originales o poco convencionales, como casas del árbol, yurtas o granjas.',
+                'icon_image' => 'unique.svg',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

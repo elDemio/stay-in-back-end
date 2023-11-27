@@ -20,12 +20,16 @@ class BookingResource extends JsonResource
             'price_total' => $this->price_total,
             'status' => $this->status,
             'property_id' => $this->property_id,
+            'payment_method_id' => $this->payment_method_id,
+            'payment_method' => $this->PaymentMethod->name,
             'property' => [
                 'property_id' => $this->property->id,
                 'name' => $this->property->name,
                 'address' => $this->property->address,
                 'user_id' => $this->property->user_id,
-                'user' => $this->user->name,
+                'host_name' => $this->property->user->name,
+                'host_email' => $this->property->user->email,
+                'cover' => $this->property->cover
             ],
             'author' => [
                 'id' => $this->user->id,

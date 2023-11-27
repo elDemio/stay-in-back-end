@@ -21,9 +21,9 @@ class CityController extends Controller
     {
         $City = City::create($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $City, //retorna toda la data
-            'msg' => 'Guardado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $City,
+            'msg' => 'Guardado correctamente'
         ],201);
     }
 
@@ -36,9 +36,9 @@ class CityController extends Controller
     {
         $CityId->update($request->all());
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $CityId, //retorna toda la data
-            'msg' => 'Actualizado correctamente' //Retorna un mensaje
+            'res' => true,
+            'data' => $CityId,
+            'msg' => 'Actualizado correctamente'
         ],200);
     }
 
@@ -49,10 +49,9 @@ class CityController extends Controller
         $City->delete();
 
         return response()->json([
-            'res' => true, //Retorna una respuesta
-            'data' => $City, //retorna toda la data
+            'res' => true,
+            'data' => $City,
             'message' => 'Eliminado correctamente'
         ],200);
-        //204 No Content
     }
 }

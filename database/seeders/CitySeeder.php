@@ -14,13 +14,6 @@ class CitySeeder extends Seeder
         DB::table('cities')->insert([
             [
                 'state_id' => State::all()->random()->id,
-                'name' => 'San Miguel',
-                'status' => '1',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'state_id' => State::all()->random()->id,
                 'name' => 'Ciudad Barrios',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -28,21 +21,21 @@ class CitySeeder extends Seeder
             ],
             [
                 'state_id' => State::all()->random()->id,
-                'name' => 'El Transito',
+                'name' => 'El Tránsito',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'state_id' => State::all()->random()->id,
-                'name' => 'Usulután',
+                'name' => 'Chilanga',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'state_id' => State::all()->random()->id,
-                'name' => 'La Unión',
+                'name' => 'El Carmen',
                 'status' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

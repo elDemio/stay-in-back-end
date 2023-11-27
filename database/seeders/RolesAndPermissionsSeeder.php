@@ -15,16 +15,13 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run()
     {
-        // reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]
                 ->forgetCachedPermissions();
 
         $viewHome = 'view Home';
 
-        //Crear Permisos
         Permission::create(['name' => $viewHome]);
 
-        //Define roles
         $superAdmin = 'super-admin';
         $invitado = 'invitado';
 
